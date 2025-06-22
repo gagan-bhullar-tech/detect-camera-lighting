@@ -1,6 +1,6 @@
-import detectLighting from "../src/index";
+import detect from "../src/index";
 
 test("detectLighting should throw an error if 'threshold' is not a number", async () => {
     const img = new Image();
-    await expect(detectLighting(img, { threshold: 1.5 })).rejects.toThrow("'threshold' must be between 0 and 1.");
+    await expect(detect.detectLightingInImage("./images/light.jpg", { threshold: 1.5 })).rejects.toThrow("'threshold' must be between 0 and 1.");
 });
