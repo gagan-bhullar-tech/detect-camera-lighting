@@ -2,7 +2,7 @@
 
 [![Pipeline](https://github.com/gagan-bhullar-tech/detect-camera-lighting/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/gagan-bhullar-tech/detect-camera-lighting/actions/workflows/npm-publish.yml)
 
-This library is designed to expand short URLs. This does not have any external dependencies and is lightweight.
+This library is designed to detect the lighting conditions of a camera in a web application. It provides an easy way to determine if the camera is in a well-lit environment or not, which can be useful for applications that require good lighting for video calls, streaming, or photography.
 
 ## Installation
 
