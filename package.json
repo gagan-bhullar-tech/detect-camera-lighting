@@ -2,20 +2,13 @@
   "name": "detect-camera-lighting",
   "version": "1.0.6",
   "description": "This library is designed to detect the lighting conditions of a camera in real-time, providing insights into whether the camera is in a well-lit or poorly lit environment.",
-  "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/cjs/index.d.ts",
+  "main": "./dist/index.js",
   "files": [
     "dist"
   ],
-  "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js"
-  },
   "scripts": {
     "test:unit": "jest --coverage --verbose",
-    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
+    "build": "tsc",
     "test": "jest --coverage --verbose"
   },
   "repository": {
@@ -43,6 +36,8 @@
     "@types/jest": "^29.5.14",
     "eslint": "^9.27.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.0.2",
+    "jsdom": "^26.1.0",
     "nock": "^14.0.4",
     "prettier": "^3.5.3",
     "ts-jest": "^29.3.4",

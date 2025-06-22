@@ -1,5 +1,5 @@
 export default {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   testTimeout: 10000
 };
