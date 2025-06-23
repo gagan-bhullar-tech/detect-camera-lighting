@@ -7,9 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "test:unit": "jest --coverage --verbose",
-    "build": "tsc",
-    "test": "jest --coverage --verbose"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
