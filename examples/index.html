@@ -6,32 +6,37 @@
     <title>detect lighting</title>
 </head>
 <body>
+    <video id="video" autoplay playsinline></video>
     <script type="module">
         import DetectLighting from '../dist/index.js';
 
         const detectLighting = new DetectLighting();
 
-        // Light image
         const lightImageUrl = './images/light.jpg';
+        const eventEmitter = detectLighting.image(lightImageUrl);
+        eventEmitter.addEventListener('processed', (data) => {
+            console.log('Processed image:', data.detail);
+        });
 
-        detectLighting.image(lightImageUrl)
-            .then(result => {
-                console.log(result);
-            })
-            .catch(error => {
-                console.error('Error detecting lighting:', error);
+        // process video
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+            const video = document.getElementById('video');
+            video.srcObject = stream;
+
+            video.addEventListener('loadedmetadata', () => {
+                video.play();
             });
-
-        // dark image
-        const darkImageUrl = './images/dark.jpg';
-
-        detectLighting.image(darkImageUrl)
-            .then(result => {
-                console.log(result);
-            })
-            .catch(error => {
-                console.error('Error detecting lighting:', error);
+            video.addEventListener('play', () => {
+                detectLighting.video(video).addEventListener('processed', (data) => {
+                    console.log('Processed video frame:', data.detail);
+                });
             });
+        })
+        .catch((error) => {
+            console.error('Error accessing webcam:', error);
+        });
+       
     </script>
 </body>
 </html>
