@@ -4,8 +4,13 @@ interface IDetectLightingOptions {
 
 const DEFAULT_THRESHOLD = 0.5;
 
+enum DetectLightingState {
+    LIGHT = "light",
+    DARK = "dark",
+}
+
 export default class DetectLighting {
-    detectLightingInImage(url: string, options?: Partial<IDetectLightingOptions>): Promise<boolean> {
+    image(url: string, options?: Partial<IDetectLightingOptions>): Promise<string> {
         return new Promise((resolve, reject) => {
            try {
                 if (options && options.threshold !== undefined && (options.threshold < 0 || options.threshold > 1)) {
@@ -14,12 +19,11 @@ export default class DetectLighting {
                 const threshold = options?.threshold || DEFAULT_THRESHOLD; // Default threshold value
                 const image = new Image();
                 image.onload = () => {
-                    this.handleImage(image, threshold)
+                    this.processFrame(image, threshold)
                         .then(result => resolve(result))
                         .catch(err => reject(err));
                 };
                 image.onerror = (err) => {
-                    console.error(`Error loading image: ${url}`, err);
                     reject(new Error(`Failed to load image: ${err}`));
                 };
                 image.crossOrigin = "anonymous";
@@ -30,16 +34,16 @@ export default class DetectLighting {
         });
     }
 
-    handleImage(image: HTMLImageElement, threshold: number): Promise<boolean> {
+    private processFrame(frame: HTMLImageElement, threshold: number): Promise<string> {
         return new Promise((resolve, reject) => {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             if (!ctx) {
                 return reject(new Error("Failed to get canvas context."));
             }
-            canvas.width = image.width;
-            canvas.height = image.height;
-            ctx.drawImage(image, 0, 0, image.width, image.height);
+            canvas.width = frame.width;
+            canvas.height = frame.height;
+            ctx.drawImage(frame, 0, 0, frame.width, frame.height);
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
             let totalBrightness = 0;
@@ -55,7 +59,7 @@ export default class DetectLighting {
             }
             const averageBrightness = totalBrightness / pixelCount;
             const thresholdValue = 255 * threshold; // Convert threshold to a value between 0 and 255
-            resolve(averageBrightness > thresholdValue);
+            return averageBrightness > thresholdValue ? resolve(DetectLightingState.LIGHT) : resolve(DetectLightingState.DARK);
         });
     }
 }

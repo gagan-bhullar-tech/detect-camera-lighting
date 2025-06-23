@@ -14,9 +14,9 @@
         // Light image
         const lightImageUrl = './images/light.jpg';
 
-        detectLighting.detectLightingInImage(lightImageUrl)
+        detectLighting.image(lightImageUrl)
             .then(result => {
-                console.log('Detected lighting in light.jpg:', result);
+                console.log(result);
             })
             .catch(error => {
                 console.error('Error detecting lighting:', error);
@@ -25,9 +25,9 @@
         // dark image
         const darkImageUrl = './images/dark.jpg';
 
-        detectLighting.detectLightingInImage(darkImageUrl)
+        detectLighting.image(darkImageUrl)
             .then(result => {
-                console.log('Detected lighting in dark.jpg:', result);
+                console.log(result);
             })
             .catch(error => {
                 console.error('Error detecting lighting:', error);
