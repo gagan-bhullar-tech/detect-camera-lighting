@@ -10,7 +10,7 @@ This library is designed to detect the lighting conditions from video stream or 
 npm install detect-camera-lighting
 ```
 
-`## Usage
+## Usage
 
 Detecting lighting from an image:
 
@@ -29,6 +29,5 @@ detectLighting.image(lightImageUrl)
         console.error('Error detecting lighting:', error);
     });
 ```
-
 
 If you like my work, please consider giving it a star on [GitHub](http://github.com/gagan-bhullar-tech/detect-camera-lighting) or Sponsor my work by following [sponsoring me](https://github.com/sponsors/gagan-bhullar-tech) link.
