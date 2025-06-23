@@ -21,7 +21,7 @@ const lightImageUrl = './images/light.jpg';
 
 const eventEmitter = detectLighting.image(lightImageUrl);
 eventEmitter.addEventListener('processed', (data) => {
-    console.log('Processed image:', data.detail);
+    console.log('Processed image:', data.detail); // this will give value 'light' or 'dark'
 });
 
 ```
@@ -43,7 +43,7 @@ navigator.mediaDevices.getUserMedia({ video: true })
         });
         video.addEventListener('play', () => {
             detectLighting.video(video).addEventListener('processed', (data) => {
-                console.log('Processed video frame:', data.detail);
+                console.log('Processed video frame:', data.detail); // this will give value 'light' or 'dark'
             });
         });
     })
