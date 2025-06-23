@@ -28,7 +28,7 @@ detectLighting.image(lightImageUrl)
     .catch(error => {
         console.error('Error detecting lighting:', error);
     });
-
+```
 
 
 If you like my work, please consider giving it a star on [GitHub](http://github.com/gagan-bhullar-tech/detect-camera-lighting) or Sponsor my work by following [sponsoring me](https://github.com/sponsors/gagan-bhullar-tech) link.
