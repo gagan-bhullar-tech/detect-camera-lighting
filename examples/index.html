@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detect lighting</title>
+</head>
+<body>
+    <script type="module">
+        import DetectLighting from '../dist/index.js';
+
+        const detectLighting = new DetectLighting();
+
+        // Light image
+        const lightImageUrl = './images/light.jpg';
+
+        detectLighting.detectLightingInImage(lightImageUrl)
+            .then(result => {
+                console.log('Detected lighting in light.jpg:', result);
+            })
+            .catch(error => {
+                console.error('Error detecting lighting:', error);
+            });
+
+        // dark image
+        const darkImageUrl = './images/dark.jpg';
+
+        detectLighting.detectLightingInImage(darkImageUrl)
+            .then(result => {
+                console.log('Detected lighting in dark.jpg:', result);
+            })
+            .catch(error => {
+                console.error('Error detecting lighting:', error);
+            });
+    </script>
+</body>
+</html>
