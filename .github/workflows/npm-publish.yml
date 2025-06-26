@@ -6,6 +6,9 @@ name: Node.js Package
 on:
   release:
     types: [created]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -17,11 +20,12 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm run build
-
+  
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: ls -la
+      # - run: npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.npm_token}}
