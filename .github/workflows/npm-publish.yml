@@ -9,9 +9,11 @@ on:
   push:
     branches:
       - main
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,13 +21,6 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm run build
-  
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - run: ls -la
-      # - run: npm publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: |
+          npm run build
+          npm publish
