@@ -5,7 +5,6 @@
       "module": "ESNext",             // Use ES Modules for modern bundling
       "lib": ["DOM", "DOM.Iterable", "ESNext"], // Include DOM types for browser APIs and latest JS features
       "declaration": true,            // Generate .d.ts files (type definitions)
-      "declarationDir": "dist/types", // Output directory for .d.ts files
       "outDir": "./dist",             // Output directory for compiled JavaScript files (before bundling)
       "strict": true,                 // Enable all strict type-checking options (highly recommended)
       "esModuleInterop": true,        // Allows default imports from modules with no default export
