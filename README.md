@@ -54,12 +54,16 @@ navigator.mediaDevices.getUserMedia({ video: true })
 
 ## Options
 
-You can pass options to the constructor of `DetectLighting` to customize the detection process.
+You can pass options to the image/video methods of `DetectLighting` to customize the detection process.
 
-The default threshold is set to 0.5, which means if the average brightness of the image is greater than 0.5, it will be considered as 'light', otherwise 'dark'. You can change the threshold by passing an options object to the constructor, e.g. `new DetectLighting({ threshold: 0.7 });` The threshold value should be between 0 and 1, where 0 is completely dark and 1 is completely light.
+**Threshold:** The default threshold is set to 0.5, which means if the average brightness of the image is greater than 0.5, it will be considered as 'light', otherwise 'dark'. You can change the threshold by passing an options object to the constructor, e.g. `new DetectLighting({ threshold: 0.7 });` The threshold value should be between 0 and 1, where 0 is completely dark and 1 is completely light.
 
 ```javascript
-const detectLighting = new DetectLighting({
+const eventEmitter = detectLighting.image(lightImageUrl, {
+    threshold: 0.5, // Threshold for light detection (default is 0.5) 
+});
+
+const eventEmitter = detectLighting.video(video, {
     threshold: 0.5, // Threshold for light detection (default is 0.5) 
 });
 ```

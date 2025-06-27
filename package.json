@@ -1,6 +1,6 @@
 {
   "name": "detect-camera-lighting",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "This library is designed to detect the lighting conditions of a camera in real-time, providing insights into whether the camera is in a well-lit or poorly lit environment.",
   "main": "./dist/index.js",
   "files": [
